@@ -6,8 +6,6 @@ imageRepository: nginx:latest
 
 variable:
 
-data:
-
 replicaCount: 1
 
 resources:
@@ -23,7 +21,7 @@ hosts:
 service:
   type: ClusterIP
   port: 80
-  protocol: HTTPS
+  protocol: HTTP
 
 ingress:
   enabled: true

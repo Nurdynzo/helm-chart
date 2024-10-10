@@ -3,6 +3,16 @@ entries:
   sample-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-10-10T13:10:48.339532575Z"
+    description: A Helm chart for Kubernetes
+    digest: 4063368daa477dcfba104f9bc29e5edb703ca8ebe9ee08bdd6b19cf0c155a6b6
+    name: sample-chart
+    type: application
+    urls:
+    - https://github.com/Nurdynzo/helm-chart/releases/download/sample-chart-0.1.2/sample-chart-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-10-09T20:16:39.190049555Z"
     description: A Helm chart for Kubernetes
     digest: 063941e79ab722cee5a7290dfc0dc09872721240b53754d033b3c35baccdd717
@@ -21,4 +31,4 @@ entries:
     urls:
     - https://github.com/Nurdynzo/helm-chart/releases/download/sample-chart-0.1.0/sample-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-09T20:16:39.190057881Z"
+generated: "2024-10-10T13:10:48.339549637Z"

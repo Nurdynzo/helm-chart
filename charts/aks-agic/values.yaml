@@ -1,0 +1,47 @@
+appName: dev-name
+
+nameSpace: default
+
+imageRepository: nginx:latest
+
+variable:
+
+replicaCount: 1
+
+resources:
+  CPULimits: 150m
+  memoryLimits: 128Mi
+  CPURequests: 100m
+  memoryRequests: 100Mi
+
+hosts:
+  url: dev.com
+  secretName: dev-tls
+
+service:
+  type: ClusterIP
+  port: 80
+  protocol: HTTP
+
+ingress:
+  enabled: true
+
+tls:
+  url: test.com
+  wildcard: false
+
+health:
+  probe:
+    path: /
+    initialDelaySeconds: 60
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 5  
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80

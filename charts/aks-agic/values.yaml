@@ -17,6 +17,7 @@ resources:
 hosts:
   url: dev.com
   secretName: dev-tls
+  wildcard: false
 
 service:
   type: ClusterIP
@@ -25,10 +26,6 @@ service:
 
 ingress:
   enabled: true
-
-tls:
-  url: test.com
-  wildcard: false
 
 health:
   probe:

@@ -16,7 +16,7 @@ spec:
       - {{ .Values.hosts.url }}
       secretName: {{ .Values.hosts.secretName }}
   rules:
-    - host: {{ .Values.tls.url }}
+    - host: {{ .Values.hosts.url }}
       http:
         paths:
           - path: /
@@ -26,8 +26,8 @@ spec:
                 name: {{ .Values.appName }}
                 port:
                   number: {{ .Values.service.port }}
-    {{- if .Values.tls.wildcard }}
-    - host: "*.{{ .Values.tls.url }}"
+    {{- if .Values.hosts.wildcard }}
+    - host: "*.{{ .Values.hosts.url }}"
       http:
         paths:
           - path: /

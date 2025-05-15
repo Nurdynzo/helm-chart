@@ -3,6 +3,20 @@ entries:
   aks-agic:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-05-15T21:41:55.315815501Z"
+    description: AKS cluster with Application Gateway Ingress Controller
+    digest: f2dc24fadbd7c1dbe7e370110e58316e6456502545efb80d0bd02a0ada6fa20e
+    maintainers:
+    - email: ololosky@gmail.com
+      name: nurudeen
+      url: https://github.com/nurdynzo
+    name: aks-agic
+    type: application
+    urls:
+    - https://github.com/Nurdynzo/helm-chart/releases/download/aks-agic-0.1.1/aks-agic-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-05-15T20:26:35.99378527Z"
     description: AKS cluster with Application Gateway Ingress Controller
     digest: efe7e31a9d4137145a7f029e0f9538e1407d6dae175d10f25d1aab13193bf2b2
@@ -46,4 +60,4 @@ entries:
     urls:
     - https://github.com/Nurdynzo/helm-chart/releases/download/sample-chart-0.1.0/sample-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-15T20:26:35.993798946Z"
+generated: "2025-05-15T21:41:55.315828476Z"

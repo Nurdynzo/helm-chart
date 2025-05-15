@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.nameSpace }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}
+          image: {{ .Values.imageRepository }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          resources:
+            requests:
+              memory: {{ .Values.resources.memoryRequests }}
+              cpu: {{ .Values.resources.CPURequests }}
+            limits:
+              memory: {{ .Values.resources.memoryLimits }}
+              cpu: {{ .Values.resources.CPULimits }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.appName }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.health.probe.path }}
+              port: {{ .Values.service.port }}
+              scheme: {{ .Values.service.protocol }}
+            initialDelaySeconds: {{ .Values.health.probe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.health.probe.timeoutSeconds }}
+            periodSeconds: {{ .Values.health.probe.periodSeconds }}
+            successThreshold: {{ .Values.health.probe.successThreshold }}
+            failureThreshold: {{ .Values.health.probe.failureThreshold }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.health.probe.path }}
+              port: {{ .Values.service.port }}
+              scheme: {{ .Values.service.protocol }}
+            initialDelaySeconds: {{ .Values.health.probe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.health.probe.timeoutSeconds }}
+            periodSeconds: {{ .Values.health.probe.periodSeconds }}
+            successThreshold: {{ .Values.health.probe.successThreshold }}
+            failureThreshold: {{ .Values.health.probe.failureThreshold }}

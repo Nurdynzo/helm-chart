@@ -1,0 +1,12 @@
+apiVersion: v2
+name: aks-agic
+description: AKS cluster with Application Gateway Ingress Controller
+
+maintainers:
+  - name: nurudeen
+    email: ololosky@gmail.com
+    url: https://github.com/nurdynzo
+
+type: application
+version: 0.1.0
+appVersion: "1.16.0"

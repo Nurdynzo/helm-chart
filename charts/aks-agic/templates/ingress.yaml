@@ -1,0 +1,41 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.nameSpace }}
+  annotations:
+{{- if contains "HTTPS" .Values.service.protocol }}
+    appgw.ingress.kubernetes.io/backend-protocol: {{ .Values.service.protocol }}
+{{- end }}
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: {{ .Values.hosts.secretName }}
+spec:
+  ingressClassName: azure-application-gateway
+  tls:
+    - hosts:
+      - {{ .Values.hosts.url }}
+      secretName: {{ .Values.hosts.secretName }}
+  rules:
+    - host: {{ .Values.tls.url }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.appName }}
+                port:
+                  number: {{ .Values.service.port }}
+    {{- if .Values.tls.wildcard }}
+    - host: "*.{{ .Values.tls.url }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.appName }}
+                port:
+                  number: {{ .Values.service.port }}     
+    {{- end }}                                              
+{{- end }}
